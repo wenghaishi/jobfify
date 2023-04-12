@@ -16,7 +16,7 @@ const Register = () => {
 
   const [values, setValues] = useState(initialState);
 
-  const {isLoading, showAlert, displayAlert} = useAppContext();
+  const {isLoading, showAlert, displayAlert, clearAlert} = useAppContext();
 
   const toggleMember = () => {
     setValues({...values, isMember: !values.isMember});
@@ -24,6 +24,7 @@ const Register = () => {
 
   const handleChange = (e) => {
     setValues({...values, [e.target.name]: e.target.value});
+    clearAlert();
   }
 
   const handleSubmit = (e) => {
