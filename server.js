@@ -17,14 +17,15 @@ app.get('/', (req, res) => {
 
 const port = process.env.PORT || 5000
 
-app.listen(port, () => {
-  console.log(`Server is listening on ${port}`)
-})
-
 const start = async () => {
-  try{
+  try {
     await connectDB(process.env.MONGO_URL)
+    app.listen(port, () => {
+      console.log(`Server is listening on port ${port}...`)
+    })
   } catch (error) {
-
+    console.log(error)
   }
 }
+
+start()
