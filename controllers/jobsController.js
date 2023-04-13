@@ -1,22 +1,22 @@
-const createJobs = async (req, res) => {
+const createJob = async (req, res) => {
   res.send('create jobs')
 }
 
-const getAllJobs = async (req, res) => {
+const getAllJob = async (req, res) => {
   res.send('getAllJobs')
 }
 
-const updateJobs = async (req, res) => {
+const updateJob = async (req, res) => {
   res.send('updateJobs')
 }
 
-const deleteJobs = async (req, res) => {
-  res.send('deleteJobs')
+const deleteJob = async (req, res) => {
+  res.send('deleteJob')
 }
 
 const showStats = async (req, res) => {
   res.send('showStats')
 }
 
-export { createJobs, getAllJobs, updateJobs, deleteJobs, showStats }
+export { createJob, getAllJob, updateJob, deleteJob, showStats }
 

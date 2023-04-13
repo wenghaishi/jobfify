@@ -9,17 +9,21 @@ dotenv.config();
 import connectDB from "./db/connect.js";
 
 //routers
-import authRouter from './routes/authRoutes.js'
+import authRouter from "./routes/authRoutes.js";
+import jobsRouter from "./routes/jobsRoutes.js";
 
-//middleware
-app.use(notFoundMiddleware);
-app.use(errorHandlerMiddleware);
-
-app.use(express.json())
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("welcome!");
 });
+
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/jobs", jobsRouter);
+
+//middleware
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 5000;
 
