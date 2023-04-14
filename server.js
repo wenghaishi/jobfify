@@ -4,6 +4,7 @@ import notFoundMiddleware from "./middleware/not-Found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 import dotenv from "dotenv";
 dotenv.config();
+import 'express-async-errors'
 
 //db and authenticate user
 import connectDB from "./db/connect.js";
