@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-import validator from 'validator';
+import validator from "validator";
+import bcrypt from "bcryptjs";
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -14,7 +15,7 @@ const UserSchema = new mongoose.Schema({
     required: [true, "please provide email"],
     validate: {
       validator: validator.isEmail,
-      message: 'Please provide a valid email'
+      message: "Please provide a valid email",
     },
     unique: true,
   },
@@ -28,14 +29,19 @@ const UserSchema = new mongoose.Schema({
     trim: true,
     minlength: 3,
     maxlength: 20,
-    default: 'lastName',
+    default: "lastName",
   },
   location: {
     type: String,
     maxlength: 20,
     trim: true,
-    default: 'myCity'
-  }
+    default: "myCity",
+  },
 });
 
-export default mongoose.model('User', UserSchema)
+UserSchema.pre("save", async function () {
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt)
+});
+
+export default mongoose.model("User", UserSchema);
