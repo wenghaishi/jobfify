@@ -1,10 +1,11 @@
+
 import express from "express";
 const app = express();
 import notFoundMiddleware from "./middleware/not-Found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 import dotenv from "dotenv";
 dotenv.config();
-import 'express-async-errors'
+import "express-async-errors";
 
 //db and authenticate user
 import connectDB from "./db/connect.js";
@@ -14,10 +15,13 @@ import authRouter from "./routes/authRoutes.js";
 import jobsRouter from "./routes/jobsRoutes.js";
 
 app.use(express.json());
-console.log("hello")
 
 app.get("/", (req, res) => {
-  res.send("welcome!");
+  res.json({msg: "welcome"});
+});
+
+app.get("/api/v1", (req, res) => {
+  res.json({msg: "API"});
 });
 
 app.use("/api/v1/auth", authRouter);
