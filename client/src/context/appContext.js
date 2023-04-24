@@ -34,6 +34,8 @@ const AppProvider = ({ children }) => {
     dispatch({ type: CLEAR_ALERT });
   };
 
+  const
+
   const registerUser = async (currentUser) => {
     dispatch({ type: REGISTER_USER_BEGIN });
     try {

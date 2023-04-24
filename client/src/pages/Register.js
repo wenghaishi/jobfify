@@ -44,13 +44,12 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if(user) {
+    if (user) {
       setTimeout(() => {
-        navigate('/')
-      }, 3000)
-      navigate('/')
+        navigate("/");
+      }, 2000);
     }
-  },[user, navigate])
+  }, [user, navigate]);
 
   return (
     <Wrapper className="full-page">
