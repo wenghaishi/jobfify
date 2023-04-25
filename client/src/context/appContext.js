@@ -10,11 +10,7 @@ import {
   LOGIN_USER_BEGIN,
   LOGIN_USER_ERROR,
   LOGIN_USER_SUCCESS,
-  SETUP_USER_BEGIN,
-  SETUP_USER_SUCCESS,
-  SETUP_USER_ERROR,
   TOGGLE_SIDEBAR,
-  TOGGLE_DROPDOWN,
   LOGOUT,
 } from "./actions";
 import axios from "axios";
@@ -55,10 +51,10 @@ const AppProvider = ({ children }) => {
     localStorage.setItem("location", location);
   };
 
-  const removeUserFromLocalStorage = ({ user, token, location }) => {
-    localStorage.removeItem("user", JSON.stringify(user));
-    localStorage.removeItem("token", token);
-    localStorage.removeItem("location", location);
+  const removeUserFromLocalStorage = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    localStorage.removeItem("location");
   };
 
   const setupUser = async (currentUser) => {
@@ -106,6 +102,7 @@ const AppProvider = ({ children }) => {
 
   const logout = () => {
     dispatch({ type: LOGOUT });
+    removeUserFromLocalStorage();
   };
 
   return (

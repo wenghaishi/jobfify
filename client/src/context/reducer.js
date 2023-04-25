@@ -10,6 +10,7 @@ import {
   TOGGLE_SIDEBAR,
   LOGOUT,
 } from "./actions";
+import { initialState } from "./appContext";
 
 const reducer = (state, action) => {
   if (action.type === DISPLAY_ALERT) {
@@ -94,9 +95,12 @@ const reducer = (state, action) => {
 
   if (action.type === LOGOUT) {
     return {
-      ...state,
-      user: null
-    }
+      ...initialState,
+      user: null,
+      token: null,
+      jobLocation: "",
+      userLocation: "",
+    };
   }
 
   throw new Error(`no such action : ${action.type}`);
