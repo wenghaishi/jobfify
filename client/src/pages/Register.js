@@ -22,8 +22,7 @@ const Register = () => {
     showAlert,
     displayAlert,
     clearAlert,
-    registerUser,
-    loginUser,
+    setupUser
   } = useAppContext();
 
   const toggleMember = () => {
@@ -42,12 +41,13 @@ const Register = () => {
       displayAlert();
       return;
     }
-    const currentUser = { name, email, password };
-    if (isMember) {
-      loginUser(currentUser);
-    } else {
-      registerUser(currentUser);
-    }
+    const currentUser = { name, email, password, isMember};
+    setupUser(currentUser)
+    // if (isMember) {
+    //   loginUser(currentUser);
+    // } else {
+    //   registerUser(currentUser);
+    // }
   };
 
   useEffect(() => {
