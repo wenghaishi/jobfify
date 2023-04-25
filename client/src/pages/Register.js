@@ -43,11 +43,6 @@ const Register = () => {
     }
     const currentUser = { name, email, password, isMember};
     setupUser(currentUser)
-    // if (isMember) {
-    //   loginUser(currentUser);
-    // } else {
-    //   registerUser(currentUser);
-    // }
   };
 
   useEffect(() => {

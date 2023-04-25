@@ -5,7 +5,7 @@ import Register from "./Register";
 
 
 export {
-  Dashboard,
+
   Landing,
   Error,
   Register
