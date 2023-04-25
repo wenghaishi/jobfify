@@ -9,6 +9,7 @@ const SharedLayout = () => {
         <Link to="add-job">Add job</Link>
         <Link to="all-jobs">All jobs</Link>
       </nav>
+      <Outlet />
     </Wrapper>
   );
 };
