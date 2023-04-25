@@ -14,7 +14,8 @@ import {
   SETUP_USER_SUCCESS,
   SETUP_USER_ERROR,
   TOGGLE_SIDEBAR,
-  TOGGLE_DROPDOWN
+  TOGGLE_DROPDOWN,
+  LOGOUT,
 } from "./actions";
 import axios from "axios";
 
@@ -103,13 +104,20 @@ const AppProvider = ({ children }) => {
     dispatch({ type: TOGGLE_SIDEBAR });
   };
 
-  const toggleDropdown = () => {
-    dispatch({ type: TOGGLE_DROPDOWN });
+  const logout = () => {
+    dispatch({ type: LOGOUT });
   };
 
   return (
     <AppContext.Provider
-      value={{ ...state, displayAlert, clearAlert, setupUser, toggleSidebar,toggleDropdown }}
+      value={{
+        ...state,
+        displayAlert,
+        clearAlert,
+        setupUser,
+        toggleSidebar,
+        logout,
+      }}
     >
       {children}
     </AppContext.Provider>

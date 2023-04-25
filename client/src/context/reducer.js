@@ -8,7 +8,7 @@ import {
   LOGIN_USER_ERROR,
   LOGIN_USER_SUCCESS,
   TOGGLE_SIDEBAR,
-  TOGGLE_DROPDOWN,
+  LOGOUT,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -92,10 +92,10 @@ const reducer = (state, action) => {
     };
   }
 
-  if (action.type === TOGGLE_DROPDOWN) {
+  if (action.type === LOGOUT) {
     return {
       ...state,
-      showDropdown: !state.showDropdown
+      user: null
     }
   }
 
