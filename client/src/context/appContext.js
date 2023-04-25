@@ -14,6 +14,7 @@ import {
   SETUP_USER_SUCCESS,
   SETUP_USER_ERROR,
   TOGGLE_SIDEBAR,
+  TOGGLE_DROPDOWN
 } from "./actions";
 import axios from "axios";
 
@@ -31,6 +32,7 @@ const initialState = {
   userLocation: userLocation || "",
   jobLocation: "",
   showSidebar: false,
+  showDropdown: false,
 };
 
 const AppContext = React.createContext();
@@ -98,12 +100,16 @@ const AppProvider = ({ children }) => {
   };
 
   const toggleSidebar = () => {
-    dispatch({ type: TOGGLE_SIDEBAR})
-  }
+    dispatch({ type: TOGGLE_SIDEBAR });
+  };
+
+  const toggleDropdown = () => {
+    dispatch({ type: TOGGLE_DROPDOWN });
+  };
 
   return (
     <AppContext.Provider
-      value={{ ...state, displayAlert, clearAlert, setupUser, toggleSidebar }}
+      value={{ ...state, displayAlert, clearAlert, setupUser, toggleSidebar,toggleDropdown }}
     >
       {children}
     </AppContext.Provider>

@@ -7,7 +7,8 @@ import {
   LOGIN_USER_BEGIN,
   LOGIN_USER_ERROR,
   LOGIN_USER_SUCCESS,
-  TOGGLE_SIDEBAR
+  TOGGLE_SIDEBAR,
+  TOGGLE_DROPDOWN,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -84,10 +85,17 @@ const reducer = (state, action) => {
     };
   }
 
-  if (action.type ===  TOGGLE_SIDEBAR) {
+  if (action.type === TOGGLE_SIDEBAR) {
     return {
       ...state,
-      showSidebar: !state.showSidebar
+      showSidebar: !state.showSidebar,
+    };
+  }
+
+  if (action.type === TOGGLE_DROPDOWN) {
+    return {
+      ...state,
+      showDropdown: !state.showDropdown
     }
   }
 
