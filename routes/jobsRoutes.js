@@ -9,8 +9,8 @@ import {
   showStats,
 } from "../controllers/jobsController.js";
 
-router.route('/').post(createJob).get(getAllJob)
-router.route('/stats').post(showStats)
-router.route('/:id').delete(deleteJob).patch(updateJob)
+router.route("/").post(createJob).get(getAllJob);
+router.route("/stats").post(showStats);
+router.route("/:id").delete(deleteJob).patch(updateJob);
 
-export default router
+export default router;
