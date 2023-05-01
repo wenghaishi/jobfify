@@ -12,6 +12,9 @@ import {
   LOGIN_USER_SUCCESS,
   TOGGLE_SIDEBAR,
   LOGOUT,
+  UPDATE_USER_ERROR,
+  UPDATE_USER_BEGIN,
+  UPDATE_USER_SUCCESS,
 } from "./actions";
 import axios from "axios";
 
@@ -105,15 +108,6 @@ const AppProvider = ({ children }) => {
     removeUserFromLocalStorage();
   };
 
-  const updateUser = async (currentUser) => {
-    try {
-      const { data } = await authFetch.patch("/auth/updateUser", currentUser);
-      console.log(data);
-    } catch (error) {
-      // console.log(error.response);
-    }
-  };
-
   const authFetch = axios.create({
     baseURL: "/api/v1",
     headers: {
@@ -123,7 +117,7 @@ const AppProvider = ({ children }) => {
 
   authFetch.interceptors.request.use(
     (config) => {
-      config.headers['Authorization'] = `Bearer ${state.token}`;
+      config.headers["Authorization"] = `Bearer ${state.token}`;
       return config;
     },
     (error) => {
@@ -136,13 +130,37 @@ const AppProvider = ({ children }) => {
       return response;
     },
     (error) => {
-      console.log(error.response);
       if (error.response.status === 401) {
-        console.log('AUTH ERROR');
+        logout();
       }
       return Promise.reject(error);
     }
   );
+  
+  const updateUser = async (currentUser) => {
+    dispatch({ type: UPDATE_USER_BEGIN });
+    try {
+      const { data } = await authFetch.patch('/auth/updateUser', currentUser);
+  
+      // no token
+      const { user, location } = data;
+  
+      dispatch({
+        type: UPDATE_USER_SUCCESS,
+        payload: { user, location, token },
+      });
+  
+      addUserToLocalStorage({ user, location, token: initialState.token });
+    } catch (error) {
+      if (error.response.status !== 401) {
+        dispatch({
+          type: UPDATE_USER_ERROR,
+          payload: { msg: error.response.data.msg },
+        });
+      }
+    }
+    clearAlert();
+  };
 
   return (
     <AppContext.Provider
