@@ -119,7 +119,7 @@ const reducer = (state, action) => {
       userLocation: action.payload.location,
       jobLocation: action.payload.location,
       showAlert: true,
-      alertType: "success",
+      alertType: "Success",
       alertText: "User Profile Updated!",
     };
   }

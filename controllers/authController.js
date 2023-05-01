@@ -60,7 +60,6 @@ const updateUser = async (req, res) => {
   if (!email || !name || !lastName || !location) {
     throw new BadRequestError('Please provide all values');
   }
-console.log(req.user.userId)
   const user = await User.findOne({ _id: req.user.userId });
 
   user.email = email;
@@ -69,6 +68,7 @@ console.log(req.user.userId)
   user.location = location;
 
   await user.save();
+  
 
   // various setups
   // in this case only id
