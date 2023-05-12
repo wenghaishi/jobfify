@@ -33,6 +33,15 @@ const initialState = {
   jobLocation: "",
   showSidebar: false,
   showDropdown: false,
+  isEditing: false,
+  editJobId: '',
+  position: '',
+  company: '',
+  // jobLocation
+  jobTypeOptions: ['full-time', 'part-time', 'remote', 'internship'],
+  jobType: 'full-time',
+  statusOptions: ['pending', 'interview', 'declined'],
+  status: 'pending'
 };
 
 const AppContext = React.createContext();
