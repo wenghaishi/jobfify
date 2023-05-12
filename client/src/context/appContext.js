@@ -15,6 +15,7 @@ import {
   UPDATE_USER_ERROR,
   UPDATE_USER_BEGIN,
   UPDATE_USER_SUCCESS,
+  HANDLE_CHANGE,
 } from "./actions";
 import axios from "axios";
 
@@ -34,14 +35,14 @@ const initialState = {
   showSidebar: false,
   showDropdown: false,
   isEditing: false,
-  editJobId: '',
-  position: '',
-  company: '',
+  editJobId: "",
+  position: "",
+  company: "",
   // jobLocation
-  jobTypeOptions: ['full-time', 'part-time', 'remote', 'internship'],
-  jobType: 'full-time',
-  statusOptions: ['pending', 'interview', 'declined'],
-  status: 'pending'
+  jobTypeOptions: ["full-time", "part-time", "remote", "internship"],
+  jobType: "full-time",
+  statusOptions: ["pending", "interview", "declined"],
+  status: "pending",
 };
 
 const AppContext = React.createContext();
@@ -162,13 +163,17 @@ const AppProvider = ({ children }) => {
       addUserToLocalStorage({ user, location, token: initialState.token });
     } catch (error) {
       // if (error.response.status !== 401) {
-        dispatch({
-          type: UPDATE_USER_ERROR,
-          payload: { msg: error.response.data.msg },
-        });
+      dispatch({
+        type: UPDATE_USER_ERROR,
+        payload: { msg: error.response.data.msg },
+      });
       // }
     }
     clearAlert();
+  };
+
+  const handleChange = ({ name, value }) => {
+    dispatch({ type: HANDLE_CHANGE, payload: { name, value } });
   };
 
   return (
@@ -181,6 +186,7 @@ const AppProvider = ({ children }) => {
         toggleSidebar,
         logout,
         updateUser,
+        handleChange,
       }}
     >
       {children}
