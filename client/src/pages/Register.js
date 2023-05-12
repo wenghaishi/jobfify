@@ -16,14 +16,8 @@ const Register = () => {
   const navigate = useNavigate();
   const [values, setValues] = useState(initialState);
 
-  const {
-    user,
-    isLoading,
-    showAlert,
-    displayAlert,
-    clearAlert,
-    setupUser
-  } = useAppContext();
+  const { user, isLoading, showAlert, displayAlert, clearAlert, setupUser } =
+    useAppContext();
 
   const toggleMember = () => {
     setValues({ ...values, isMember: !values.isMember });
@@ -41,8 +35,8 @@ const Register = () => {
       displayAlert();
       return;
     }
-    const currentUser = { name, email, password, isMember};
-    setupUser(currentUser)
+    const currentUser = { name, email, password, isMember };
+    setupUser(currentUser);
   };
 
   useEffect(() => {

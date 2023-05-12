@@ -1,6 +1,6 @@
-import { FormRow, Alert } from '../../components';
-import { useAppContext } from '../../context/appContext';
-import Wrapper from '../../assets/wrappers/DashboardFormPage';
+import { FormRow, Alert } from "../../components";
+import { useAppContext } from "../../context/appContext";
+import Wrapper from "../../assets/wrappers/DashboardFormPage";
 const AddJob = () => {
   const {
     isEditing,
@@ -22,7 +22,7 @@ const AddJob = () => {
       displayAlert();
       return;
     }
-    console.log('create job');
+    console.log("create job");
   };
 
   const handleJobInput = (e) => {
@@ -33,41 +33,60 @@ const AddJob = () => {
 
   return (
     <Wrapper>
-      <form className='form'>
-        <h3>{isEditing ? 'edit job' : 'add job'} </h3>
+      <form className="form">
+        <h3>{isEditing ? "edit job" : "add job"} </h3>
         {showAlert && <Alert />}
 
         {/* position */}
-        <div className='form-center'>
+        <div className="form-center">
           <FormRow
-            type='text'
-            name='position'
+            type="text"
+            name="position"
             value={position}
             handleChange={handleJobInput}
           />
           {/* company */}
           <FormRow
-            type='text'
-            name='company'
+            type="text"
+            name="company"
             value={company}
             handleChange={handleJobInput}
           />
           {/* location */}
           <FormRow
-            type='text'
-            labelText='location'
-            name='jobLocation'
+            type="text"
+            labelText="location"
+            name="jobLocation"
             value={jobLocation}
             handleChange={handleJobInput}
           />
           {/* job type */}
+          <div className="form-row">
+            <label htmlFor="jobType" className="form-label">
+              job type
+            </label>
 
+            <select
+              name="jobType"
+              value={jobType}
+              onChange={handleJobInput}
+              className="form-select"
+            >
+              {jobTypeOptions.map((itemValue, index) => {
+                return (
+                  <option key={index} value={itemValue}>
+                    {itemValue}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
           {/* job status */}
 
-          <div className='btn-container'>
+          <div className="btn-container">
             <button
-              className='btn btn-block submit-btn'
-              type='submit'
+              className="btn btn-block submit-btn"
+              type="submit"
               onClick={handleSubmit}
             >
               submit
