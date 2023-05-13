@@ -59,7 +59,9 @@ const AppProvider = ({ children }) => {
   };
 
   const clearAlert = () => {
-    dispatch({ type: CLEAR_ALERT });
+    setTimeout(() => {
+      dispatch({ type: CLEAR_ALERT });
+    }, 3000);
   };
 
   const addUserToLocalStorage = ({ user, token, location }) => {
@@ -189,8 +191,8 @@ const AppProvider = ({ children }) => {
     dispatch({ type: CREATE_JOB_BEGIN });
     try {
       const { position, company, jobLocation, jobType, status } = state;
-  
-      await authFetch.post('/jobs', {
+
+      await authFetch.post("/jobs", {
         company,
         position,
         jobLocation,
