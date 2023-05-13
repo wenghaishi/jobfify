@@ -13,6 +13,7 @@ import {
   UPDATE_USER_ERROR,
   UPDATE_USER_SUCCESS,
   HANDLE_CHANGE,
+  CLEAR_VALUES
 } from "./actions";
 import { initialState } from "./appContext";
 
@@ -138,6 +139,24 @@ const reducer = (state, action) => {
       ...state,
       [action.payload.name]: action.payload.value,
     };
+  }
+
+  if (action.type === CLEAR_VALUES) {
+
+    const initialState = {
+      jobLocation: state.userLocation,
+      isEditing: false,
+      editJobId: "",
+      position: "",
+      company: "",
+      jobType: "full-time",
+      status: "pending",
+    };
+
+    return {
+      ...state,
+      ...initialState,
+    }
   }
 
   throw new Error(`no such action : ${action.type}`);
