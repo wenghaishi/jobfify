@@ -162,22 +162,17 @@ const reducer = (state, action) => {
   }
 
   if (action.type === CREATE_JOB_BEGIN) {
-    return {
-      ...state,
-      isLoading: true,
-    }
+    return { ...state, isLoading: true };
   }
-
   if (action.type === CREATE_JOB_SUCCESS) {
     return {
       ...state,
       isLoading: false,
       showAlert: true,
-      alertType: 'success',
-      alertText: 'New Job Created!',
-    }
+      alertType: "success",
+      alertText: "New Job Created!",
+    };
   }
-
   if (action.type === CREATE_JOB_ERROR) {
     return {
       ...state,

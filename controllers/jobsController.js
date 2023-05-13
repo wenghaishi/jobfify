@@ -9,7 +9,7 @@ const createJob = async (req, res) => {
     throw new BadRequestError('Please provide all values')
   }
   req.body.createdBy = req.user.userId;
-  const job = await job.create(req.body)
+  const job = await Job.create(req.body)
   res.status(StatusCodes.CREATED).json({ job });
 }
 

@@ -85,6 +85,7 @@ const AppProvider = ({ children }) => {
           payload: { user, token, location },
         });
         addUserToLocalStorage({ user, token, location });
+        clearAlert();
       } catch (error) {
         console.log(error);
         dispatch({
@@ -188,22 +189,27 @@ const AppProvider = ({ children }) => {
     dispatch({ type: CREATE_JOB_BEGIN });
     try {
       const { position, company, jobLocation, jobType, status } = state;
-      await authFetch.post("/jobs", {
-        position,
+  
+      await authFetch.post('/jobs', {
         company,
+        position,
         jobLocation,
         jobType,
         status,
       });
-      dispatch({ type: CREATE_JOB_SUCCESS });
+      dispatch({
+        type: CREATE_JOB_SUCCESS,
+      });
+      // call function instead clearValues()
       dispatch({ type: CLEAR_VALUES });
     } catch (error) {
-      if (error.response.status === 401)
-        dispatch({
-          type: CREATE_JOB_ERROR,
-          payload: { msg: error.response.data.msg },
-        });
+      if (error.response.status === 401) return;
+      dispatch({
+        type: CREATE_JOB_ERROR,
+        payload: { msg: error.response.data.msg },
+      });
     }
+    clearAlert();
   };
 
   return (
