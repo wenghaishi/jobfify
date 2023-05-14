@@ -283,7 +283,7 @@ const AppProvider = ({ children }) => {
       await authFetch.delete(`/jobs/${jobId}`);
       getJobs();
     } catch (error) {
-      logout();
+      // logout();
     }
   };
 
