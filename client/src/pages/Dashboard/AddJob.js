@@ -1,8 +1,10 @@
-import { FormRow, FormRowSelect, Alert } from "../../components";
-import { useAppContext } from "../../context/appContext";
-import Wrapper from "../../assets/wrappers/DashboardFormPage";
+import { FormRow, FormRowSelect, Alert } from '../../components'
+import { useAppContext } from '../../context/appContext'
+import Wrapper from '../../assets/wrappers/DashboardFormPage'
+
 const AddJob = () => {
   const {
+    isLoading,
     isEditing,
     showAlert,
     displayAlert,
@@ -16,90 +18,95 @@ const AddJob = () => {
     handleChange,
     clearValues,
     createJob,
-  } = useAppContext();
+    editJob,
+  } = useAppContext()
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (isEditing) {
-      return;
-    }
-    createJob();
-  };
+    e.preventDefault()
 
+    if (!position || !company || !jobLocation) {
+      displayAlert()
+      return
+    }
+    if (isEditing) {
+      editJob()
+      return
+    }
+    createJob()
+  }
   const handleJobInput = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    handleChange({ name, value });
-  };
+    const name = e.target.name
+    const value = e.target.value
+    handleChange({ name, value })
+  }
 
   return (
     <Wrapper>
-      <form className="form">
-        <h3>{isEditing ? "edit job" : "add job"} </h3>
+      <form className='form'>
+        <h3>{isEditing ? 'edit job' : 'add job'}</h3>
         {showAlert && <Alert />}
-
-        {/* position */}
-        <div className="form-center">
+        <div className='form-center'>
+          {/* position */}
           <FormRow
-            type="text"
-            name="position"
+            type='text'
+            name='position'
             value={position}
             handleChange={handleJobInput}
           />
           {/* company */}
           <FormRow
-            type="text"
-            name="company"
+            type='text'
+            name='company'
             value={company}
             handleChange={handleJobInput}
           />
           {/* location */}
           <FormRow
-            type="text"
-            labelText="location"
-            name="jobLocation"
+            type='text'
+            labelText='job location'
+            name='jobLocation'
             value={jobLocation}
             handleChange={handleJobInput}
           />
           {/* job status */}
           <FormRowSelect
-            name="status"
+            name='status'
             value={status}
             handleChange={handleJobInput}
             list={statusOptions}
           />
-
           {/* job type */}
           <FormRowSelect
-            labelText="type"
-            name="jobType"
+            name='jobType'
+            labelText='job type'
             value={jobType}
             handleChange={handleJobInput}
             list={jobTypeOptions}
           />
-
-          <div className="btn-container">
+          {/* btn container */}
+          <div className='btn-container'>
             <button
-              className="btn btn-block clear-btn"
+              type='submit'
+              className='btn btn-block submit-btn'
+              onClick={handleSubmit}
+              disabled={isLoading}
+            >
+              submit
+            </button>
+            <button
+              className='btn btn-block clear-btn'
               onClick={(e) => {
-                e.preventDefault();
-                clearValues();
+                e.preventDefault()
+                clearValues()
               }}
             >
               clear
-            </button>
-            <button
-              className="btn btn-block submit-btn"
-              type="submit"
-              onClick={handleSubmit}
-            >
-              submit
             </button>
           </div>
         </div>
       </form>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default AddJob;
+export default AddJob
