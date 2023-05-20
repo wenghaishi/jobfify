@@ -43,7 +43,6 @@ const login = async (req, res) => {
   if (!user) {
     throw new UnauthenticatedError("Invalid credentials");
   }
-  console.log(user);
 
   const isPasswordCorrect = await user.comparePassword(password);
   if (!isPasswordCorrect) {
@@ -58,7 +57,7 @@ const login = async (req, res) => {
 const updateUser = async (req, res) => {
   const { email, name, lastName, location } = req.body;
   if (!email || !name || !lastName || !location) {
-    throw new BadRequestError('Please provide all values');
+    throw new BadRequestError("Please provide all values");
   }
   const user = await User.findOne({ _id: req.user.userId });
 
@@ -68,7 +67,6 @@ const updateUser = async (req, res) => {
   user.location = location;
 
   await user.save();
-  
 
   // various setups
   // in this case only id
