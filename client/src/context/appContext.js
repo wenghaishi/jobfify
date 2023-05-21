@@ -29,6 +29,7 @@ import {
   EDIT_JOB_ERROR,
   SHOW_STATS_BEGIN,
   SHOW_STATS_SUCCESS,
+  CLEAR_FILTERS,
 } from "./actions";
 import axios from "axios";
 
@@ -235,23 +236,26 @@ const AppProvider = ({ children }) => {
   };
 
   const getJobs = async () => {
-    let url = `/jobs`;
-
+    // will add page later
+    const { search, searchStatus, searchType, sort } = state;
+    let url = `/jobs?status=${searchStatus}&jobType=${searchType}&sort=${sort}`;
+    if (search) {
+      url = url + `&search=${search}`;
+    }
     dispatch({ type: GET_JOBS_BEGIN });
     try {
       const { data } = await authFetch(url);
-      const { jobs, totalJobs, numOgPages } = data;
+      const { jobs, totalJobs, numOfPages } = data;
       dispatch({
         type: GET_JOBS_SUCCESS,
         payload: {
           jobs,
           totalJobs,
-          numOgPages,
+          numOfPages,
         },
       });
     } catch (error) {
-      console.log(error.response);
-      // logoutUser();
+      // logoutUser()
     }
     clearAlert();
   };
@@ -315,7 +319,7 @@ const AppProvider = ({ children }) => {
   };
 
   const clearFilters = () => {
-    console.log("clear filter");
+    dispatch({ type: CLEAR_FILTERS });
   };
 
   return (
