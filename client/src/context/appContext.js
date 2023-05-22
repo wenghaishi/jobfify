@@ -101,7 +101,7 @@ const AppProvider = ({ children }) => {
     if (currentUser.isMember) {
       dispatch({ type: LOGIN_USER_BEGIN });
       try {
-        const response = await axios.post("/api/v1/auth/login", currentUser);
+        const response = await axios.post("https://shrouded-atoll-39408.herokuapp.com/api/v1/auth/login", currentUser);
         const { user, token, location } = response.data;
         dispatch({
           type: LOGIN_USER_SUCCESS,
@@ -147,7 +147,7 @@ const AppProvider = ({ children }) => {
   };
 
   const authFetch = axios.create({
-    baseURL: "/api/v1",
+    baseURL: "https://shrouded-atoll-39408.herokuapp.com/api/v1",
     headers: {
       Authorization: `Bearer ${state.token}`,
     },
