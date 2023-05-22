@@ -49,7 +49,7 @@ app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 
 const start = async () => {
   try {
