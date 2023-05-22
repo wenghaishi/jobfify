@@ -43,7 +43,7 @@ const Register = () => {
     if (user) {
       setTimeout(() => {
         navigate("/");
-      }, 2000);
+      }, 1000);
     }
   }, [user, navigate]);
 
@@ -82,6 +82,17 @@ const Register = () => {
         />
         <button type="submit" className="btn btn-block" disabled={isLoading}>
           Submit
+        </button>
+        <button
+          type="button"
+          className="btn btn-block btn-hipster"
+          disabled={isLoading}
+          onClick={() => {
+            const currentUser = { email: 'test@email.com', password: "123456", isMember: true};
+            setupUser(currentUser);
+          }}
+        >
+          {isLoading ? "loading..." : "demo app"}
         </button>
         <p>
           {values.isMember ? "Not a member yet?" : "Already a member?"}
