@@ -18,11 +18,20 @@ import connectDB from "./db/connect.js";
 import authRouter from "./routes/authRoutes.js";
 import jobsRouter from "./routes/jobsRoutes.js";
 
+import helmet from 'helmet';
+import xss from 'xss-clean';
+import mongoSanitize from 'express-mongo-sanitize';
+
 if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'))
 }
 
 app.use(express.json());
+
+app.use(express.json());
+app.use(helmet());
+app.use(xss());
+app.use(mongoSanitize());
 
 app.get("/", (req, res) => {
   res.json({msg: "welcome"});
