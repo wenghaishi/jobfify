@@ -3,6 +3,10 @@ import validator from "validator";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+mongoose.set("strictQuery", false);
+mongoose.connect(process.env.MONGO_URL);
+
+
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
