@@ -12,6 +12,7 @@
     "server": "node server.js",
     "client": "npm start --prefix client",
     "start": "npm run client && npm run server",
+    "setup-production":"npm run install-client && npm run build-client && npm install",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
