@@ -48,6 +48,7 @@
     "validator": "^13.9.0",
     "xss-clean": "^0.1.1",
     "concurrently": "^6.4.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "concurrently": "^8.0.1"
   }
 }
