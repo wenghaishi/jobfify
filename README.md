@@ -4,7 +4,7 @@ Fullstack job tracker app that allows users to track the jobs that they applied.
 
 * Users can create accounts. Accounts can create jobs.
 * Users can search for jobs that they created previously and change the status of jobs.
-* Users can look at an overview of their jobs in the form of pie/ line charts.
+* Users can look at an overview of their jobs in the form of bar/ line charts.
 
 Built in MongoDB, Express, React and Node.
 
