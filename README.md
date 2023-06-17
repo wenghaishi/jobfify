@@ -1,4 +1,4 @@
-# Jobfify
+# Jobify
 
 Fullstack job tracker app that allows users to track the jobs that they applied.
 
